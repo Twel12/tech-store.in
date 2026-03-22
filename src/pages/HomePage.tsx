@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
+import { ROUTES } from '../config/routes'
 
-export function LandingPage() {
+export function HomePage() {
   const navigate = useNavigate()
   return (
     <div className="pt-20">
@@ -22,7 +23,7 @@ export function LandingPage() {
             <div className="flex flex-wrap gap-4">
               <button
                 type="button"
-                onClick={() => navigate('/product')}
+                onClick={() => navigate(ROUTES.product)}
                 className="from-primary-container to-primary text-on-primary rounded-full bg-gradient-to-br px-10 py-4 text-lg font-bold shadow-xl shadow-primary/20 transition-all hover:scale-105 active:scale-95"
               >
                 Buy Now
@@ -60,7 +61,7 @@ export function LandingPage() {
               </p>
             </div>
             <Link
-              to="/catalog"
+              to={ROUTES.catalog}
               className="group text-primary flex items-center gap-2 text-lg font-bold"
             >
               View Full Catalog{' '}
