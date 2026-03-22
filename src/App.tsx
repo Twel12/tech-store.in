@@ -21,6 +21,9 @@ const PlatformPage = lazy(() =>
 const SolutionsPage = lazy(() =>
   import('./pages/SolutionsPage').then((m) => ({ default: m.SolutionsPage })),
 )
+const NotFoundPage = lazy(() =>
+  import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })),
+)
 
 function RouteFallback() {
   return (
@@ -45,6 +48,7 @@ export default function App() {
           <Route path={ROUTES.cart} element={<CartPage />} />
           <Route path={ROUTES.platform} element={<PlatformPage />} />
           <Route path={ROUTES.solutions} element={<SolutionsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </AppLayout>
