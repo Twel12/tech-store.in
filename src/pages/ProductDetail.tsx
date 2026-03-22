@@ -1,10 +1,25 @@
+import { useState } from 'react'
+import { useCart } from '../context/useCart'
+import { formatUsd } from '../lib/money'
+
 const SPECS = [
   { i: 'memory', l: 'VRAM Capacity', v: '24GB GDDR6X' },
   { i: 'speed', l: 'Boost Clock', v: '2.8 GHz' },
   { i: 'bolt', l: 'Total Power', v: '450W TDP' },
 ] as const
 
+const PRODUCT = {
+  productId: 'aether-vortex-x1',
+  name: 'Aether Vortex X-1',
+  priceCents: 1599_00,
+  img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAT7Cw5vjjZVHTzpMboLLiOVxZsNDRK_ikyWBBLOiWuj_1hC_ARS_yjajtZSeWt3ad0ryoo4OB7VsMp6jOG4O8Q78xc87XD997aH8s79Bfk0oMNy4BfNennNo4vQSaESWUaLGHYZp2XEHeh1pL7dN25ZSH9hfL_5IUkArhbOrjLayCxilc3sYMlnKHt6RRZC1MfHcEwoT0rCuAkdoYGYGsusNQDtzZBrHW53wsiMB9qrGJCqtf09Qs8aLLAcm9VYaxZh8nRaBs0ZBE',
+  category: 'Graphics',
+} as const
+
 export function ProductDetail() {
+  const { addItem } = useCart()
+  const [addPulse, setAddPulse] = useState(0)
+
   return (
     <main className="mx-auto max-w-screen-2xl px-6 pt-32 pb-20">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
@@ -26,7 +41,7 @@ export function ProductDetail() {
             <div className="bg-primary-container/20 absolute top-1/2 left-1/2 -z-10 h-4/5 w-4/5 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]" />
             <div className="bg-surface-container-lowest flex items-center justify-center overflow-hidden rounded-xl p-8 md:p-16">
               <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT7Cw5vjjZVHTzpMboLLiOVxZsNDRK_ikyWBBLOiWuj_1hC_ARS_yjajtZSeWt3ad0ryoo4OB7VsMp6jOG4O8Q78xc87XD997aH8s79Bfk0oMNy4BfNennNo4vQSaESWUaLGHYZp2XEHeh1pL7dN25ZSH9hfL_5IUkArhbOrjLayCxilc3sYMlnKHt6RRZC1MfHcEwoT0rCuAkdoYGYGsusNQDtzZBrHW53wsiMB9qrGJCqtf09Qs8aLLAcm9VYaxZh8nRaBs0ZBE"
+                src={PRODUCT.img}
                 className="h-auto w-full object-contain transition-transform duration-700 hover:scale-105"
                 alt="GPU"
               />
@@ -56,15 +71,26 @@ export function ProductDetail() {
         </div>
         <div className="lg:col-span-4">
           <div className="bg-surface-container-high sticky top-32 space-y-4 rounded-xl p-8">
-          <div>
-            <span className="text-primary-container text-5xl font-black tracking-tighter">
-              $1,599.00
-            </span>
+            <div>
+              <span className="text-primary-container text-5xl font-black tracking-tighter">
+                {formatUsd(PRODUCT.priceCents)}
+              </span>
             </div>
             <div className="space-y-4">
               <button
+                key={addPulse}
                 type="button"
-                className="from-primary-container to-primary w-full rounded-full bg-gradient-to-br py-5 text-lg font-bold text-white shadow-lg shadow-primary/20 transition-all hover:scale-[1.02] active:scale-95"
+                className={`from-primary-container to-primary w-full rounded-full bg-gradient-to-br py-5 text-lg font-bold text-white shadow-lg shadow-primary/20 transition-transform hover:scale-[1.02] active:scale-95 ${addPulse > 0 ? 'animate-add-to-cart' : ''}`}
+                onClick={() => {
+                  setAddPulse((n) => n + 1)
+                  addItem({
+                    productId: PRODUCT.productId,
+                    name: PRODUCT.name,
+                    priceCents: PRODUCT.priceCents,
+                    img: PRODUCT.img,
+                    category: PRODUCT.category,
+                  })
+                }}
               >
                 Add to Cart
               </button>

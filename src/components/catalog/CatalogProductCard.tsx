@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useCart } from '../../context/useCart'
+import { formatUsd } from '../../lib/money'
 import type { CatalogProduct } from './types'
 
 export function CatalogProductCard({
@@ -8,7 +11,10 @@ export function CatalogProductCard({
   product: CatalogProduct
   to?: string
 }) {
-  const { name, price, img } = product
+  const { name, priceCents, img, id, category } = product
+  const { addItem } = useCart()
+  const [addPulse, setAddPulse] = useState(0)
+
   return (
     <article className="group bg-surface-container-lowest hover:-translate-y-2 rounded-xl p-8 shadow-sm transition-all duration-500 hover:shadow-xl">
       <Link to={to} className="block">
@@ -22,11 +28,22 @@ export function CatalogProductCard({
         <h3 className="mb-2 text-xl font-bold">{name}</h3>
       </Link>
       <div className="mt-4 flex items-center justify-between">
-        <span className="text-2xl font-black">{price}</span>
+        <span className="text-2xl font-black">{formatUsd(priceCents)}</span>
         <button
+          key={addPulse}
           type="button"
-          className="bg-primary hover:scale-110 rounded-full p-3 text-white transition-all"
+          className={`bg-primary hover:scale-110 rounded-full p-3 text-white transition-transform hover:shadow-lg hover:shadow-primary/30 ${addPulse > 0 ? 'animate-add-to-cart' : ''}`}
           aria-label={`Add ${name} to cart`}
+          onClick={() => {
+            setAddPulse((n) => n + 1)
+            addItem({
+              productId: id,
+              name,
+              priceCents,
+              img,
+              category,
+            })
+          }}
         >
           <span className="material-symbols-outlined">add_shopping_cart</span>
         </button>
