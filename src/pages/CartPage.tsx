@@ -41,7 +41,7 @@ export function CartPage() {
         <h1 className="mb-2 text-5xl font-extrabold tracking-tight">Cart</h1>
         <p className="text-on-surface-variant text-lg">
           You have {itemCount} {itemCount === 1 ? 'item' : 'items'} in your
-          editorial selection.
+          cart.
         </p>
       </div>
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
@@ -128,9 +128,7 @@ export function CartPage() {
             <button
               type="button"
               className="bg-primary w-full rounded-full py-5 font-bold text-white shadow-lg shadow-primary/20 transition-all hover:scale-105"
-              onClick={() => {
-                // clearCart() //TODO: lets not clear it for now will be implemented
-              }}
+              onClick={() => clearCart()}
             >
               Checkout
             </button>

@@ -16,7 +16,7 @@ export function TopNavBar() {
           to="/"
           className={`text-2xl font-bold tracking-tighter ${isDark ? 'text-white' : 'text-slate-900'}`}
         >
-          AetherTech
+          tech-store.in
         </Link>
         <div className="hidden items-center gap-10 md:flex">
           <Link

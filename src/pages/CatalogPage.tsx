@@ -7,8 +7,8 @@ import {
 
 const PRODUCTS: CatalogProduct[] = [
   {
-    id: 'aether-core-i9-x',
-    name: 'Aether Core i9-X',
+    id: 'core-i9-x',
+    name: 'Core i9-X',
     priceCents: 599_00,
     img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDsef_P6ikHHe16WVee4e554queBOJpPHkCbcPA0iWErBhAaigJilMzjE_S69MYNIZ34sDYb_c80KXU1SGZIpVpf1-1n2fSfJvLnaXnP3h_LVxWDfJFnApwdPmfBeLuNw_jgcT_DIZAxguCyLLkdb4UbtIEhkxTmyGtmlW0hd0DbeNjcz0gxDtamGZyEdzWceGRqIRBaaccEJHhCYQK-ze2vyzFibBcrEhbdtlsw46YdAp7q6fSqgDGtpvjaMfgTYs3UdBSXKo2KOs',
     category: 'Processors',

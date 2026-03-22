@@ -12,7 +12,7 @@ export function Footer() {
       <div
         className={`mb-8 text-xl font-black tracking-tighter ${isDark ? 'text-slate-400' : 'text-slate-900'}`}
       >
-        AetherTech
+        tech-store.in
       </div>
       <div className="mb-10 flex flex-wrap justify-center gap-8">
         {['Support', 'Privacy', 'Warranty', 'Shipping'].map((item) => (
@@ -26,7 +26,7 @@ export function Footer() {
         ))}
       </div>
       <p className="text-center text-xs font-normal uppercase tracking-widest text-slate-400">
-        © 2024 AetherTech Editorial Gallery. All rights reserved.
+        © 2026 tech-store.in. All rights reserved.
       </p>
     </footer>
   )

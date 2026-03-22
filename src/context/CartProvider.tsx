@@ -8,7 +8,7 @@ import {
 import { CartContext } from './cartContext'
 import type { AddToCartInput, CartItem } from './cartTypes'
 
-const STORAGE_KEY = 'aethertech-cart'
+const STORAGE_KEY = 'tech-store-in-cart'
 
 type CartState = { items: CartItem[] }
 

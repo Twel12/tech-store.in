@@ -9,8 +9,8 @@ const SPECS = [
 ] as const
 
 const PRODUCT = {
-  productId: 'aether-vortex-x1',
-  name: 'Aether Vortex X-1',
+  productId: 'vortex-x1',
+  name: 'Vortex X-1',
   priceCents: 1599_00,
   img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAT7Cw5vjjZVHTzpMboLLiOVxZsNDRK_ikyWBBLOiWuj_1hC_ARS_yjajtZSeWt3ad0ryoo4OB7VsMp6jOG4O8Q78xc87XD997aH8s79Bfk0oMNy4BfNennNo4vQSaESWUaLGHYZp2XEHeh1pL7dN25ZSH9hfL_5IUkArhbOrjLayCxilc3sYMlnKHt6RRZC1MfHcEwoT0rCuAkdoYGYGsusNQDtzZBrHW53wsiMB9qrGJCqtf09Qs8aLLAcm9VYaxZh8nRaBs0ZBE',
   category: 'Graphics',
@@ -29,8 +29,8 @@ export function ProductDetail() {
               Next-Gen Architecture
             </span>
             <h1 className="text-on-surface mb-8 text-6xl leading-[0.9] font-black tracking-tighter md:text-8xl">
-              Aether <br />
-              Vortex X-1
+              Vortex <br />
+              X-1
             </h1>
             <p className="text-on-surface-variant max-w-xl text-xl leading-relaxed">
               The pinnacle of visual computation. Designed for creators who

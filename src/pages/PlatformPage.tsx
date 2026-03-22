@@ -4,7 +4,7 @@ export function PlatformPage() {
       <section className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-8 py-16 lg:grid-cols-2">
         <div>
           <span className="bg-secondary-container/30 text-secondary-fixed-dim mb-6 inline-block rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase">
-            Aether Engine v2.4.0-stable
+            tech-store.in · v2.4.0-stable
           </span>
           <h1 className="font-headline mb-6 bg-gradient-to-br from-white via-white to-blue-400 bg-clip-text text-5xl leading-tight font-extrabold tracking-tighter text-transparent md:text-7xl">
             Orchestrate Your <br />
