@@ -2,7 +2,7 @@ import { memo } from 'react'
 import { SALES_TAX_RATE } from '../../lib/constants'
 import { formatUsd } from '../../lib/money'
 
-export type CartSummaryProps = {
+type CartSummaryProps = {
   subtotalCents: number
   taxCents: number
   totalCents: number

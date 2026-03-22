@@ -1,5 +1,5 @@
 import { CART_STORAGE_KEY } from './constants'
-import type { CartItem } from '../types/cart'
+import type { CartItem } from '../types'
 
 function isCartItemRow(row: unknown): row is CartItem {
   if (!row || typeof row !== 'object') return false

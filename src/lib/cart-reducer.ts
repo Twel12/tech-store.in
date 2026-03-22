@@ -1,4 +1,4 @@
-import type { AddToCartInput, CartItem } from '../types/cart'
+import type { AddToCartInput, CartItem } from '../types'
 
 export type CartState = { items: CartItem[] }
 

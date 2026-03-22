@@ -1,25 +1,25 @@
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { AppLayout } from '../components/layout'
-import { ROUTES } from '../config/routes'
+import { AppLayout } from './components/layout'
+import { ROUTES } from './config/routes'
 
 const HomePage = lazy(() =>
-  import('../pages/HomePage').then((m) => ({ default: m.HomePage })),
+  import('./pages/HomePage').then((m) => ({ default: m.HomePage })),
 )
 const ProductDetail = lazy(() =>
-  import('../pages/ProductDetail').then((m) => ({ default: m.ProductDetail })),
+  import('./pages/ProductDetail').then((m) => ({ default: m.ProductDetail })),
 )
 const CatalogPage = lazy(() =>
-  import('../pages/CatalogPage').then((m) => ({ default: m.CatalogPage })),
+  import('./pages/CatalogPage').then((m) => ({ default: m.CatalogPage })),
 )
 const CartPage = lazy(() =>
-  import('../pages/CartPage').then((m) => ({ default: m.CartPage })),
+  import('./pages/CartPage').then((m) => ({ default: m.CartPage })),
 )
 const PlatformPage = lazy(() =>
-  import('../pages/PlatformPage').then((m) => ({ default: m.PlatformPage })),
+  import('./pages/PlatformPage').then((m) => ({ default: m.PlatformPage })),
 )
 const SolutionsPage = lazy(() =>
-  import('../pages/SolutionsPage').then((m) => ({ default: m.SolutionsPage })),
+  import('./pages/SolutionsPage').then((m) => ({ default: m.SolutionsPage })),
 )
 
 function RouteFallback() {

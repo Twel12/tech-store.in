@@ -2,6 +2,7 @@ import { memo, useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { ROUTES } from '../../config/routes'
 import { useCart } from '../../hooks/useCart'
+import { useTheme } from '../../hooks/useTheme'
 import { BRAND_NAME } from '../../lib/constants'
 import { cn } from '../../utils/cn'
 
@@ -15,6 +16,7 @@ const NAV_ITEMS: NavItem[] = [
 
 function NavbarComponent() {
   const { itemCount } = useCart()
+  const { isDark, toggleTheme } = useTheme()
   const { pathname } = useLocation()
 
   // Track the pathname when the drawer was opened. When the current pathname
@@ -49,12 +51,12 @@ function NavbarComponent() {
     <>
       <nav
         aria-label="Primary"
-        className="fixed top-0 z-50 w-full border-b border-outline-variant/10 bg-white/70 shadow-sm backdrop-blur-xl"
+        className="fixed top-0 z-50 w-full border-b border-outline-variant/10 bg-white/70 shadow-sm backdrop-blur-xl dark:bg-black/80"
       >
         <div className="mx-auto flex h-20 w-full max-w-screen-2xl items-center justify-between px-8">
           <Link
             to={ROUTES.home}
-            className="text-2xl font-bold tracking-tighter text-slate-900"
+            className="text-2xl font-bold tracking-tighter text-slate-900 dark:text-slate-100"
           >
             {BRAND_NAME}
           </Link>
@@ -68,8 +70,8 @@ function NavbarComponent() {
                   cn(
                     'border-b-2 border-transparent pb-0.5 font-body tracking-tight transition-all hover:scale-105',
                     isActive
-                      ? 'border-blue-600 font-semibold text-blue-600'
-                      : 'text-slate-500',
+                      ? 'border-blue-600 font-semibold text-blue-600 dark:border-blue-400 dark:text-blue-400'
+                      : 'text-slate-500 dark:text-slate-400',
                   )
                 }
               >
@@ -81,7 +83,7 @@ function NavbarComponent() {
           <div className="flex items-center gap-4 md:gap-6">
             <Link
               to={ROUTES.cart}
-              className="relative text-slate-500 transition-all hover:scale-110"
+              className="relative text-slate-500 transition-all hover:scale-110 dark:text-slate-400"
               aria-label={`Shopping cart, ${itemCount} items`}
             >
               <span className="material-symbols-outlined" aria-hidden>
@@ -98,7 +100,7 @@ function NavbarComponent() {
             </Link>
             <button
               type="button"
-              className="text-slate-500 transition-all hover:scale-110"
+              className="text-slate-500 transition-all hover:scale-110 dark:text-slate-400"
               aria-label="Account"
             >
               <span className="material-symbols-outlined" aria-hidden>
@@ -107,7 +109,17 @@ function NavbarComponent() {
             </button>
             <button
               type="button"
-              className="rounded-lg p-1 text-slate-700 transition-all hover:bg-slate-100 md:hidden"
+              className="text-slate-500 transition-all hover:scale-110 dark:text-slate-400"
+              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              onClick={toggleTheme}
+            >
+              <span className="material-symbols-outlined" aria-hidden>
+                {isDark ? 'light_mode' : 'dark_mode'}
+              </span>
+            </button>
+            <button
+              type="button"
+              className="rounded-lg p-1 text-slate-700 transition-all hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/5 md:hidden"
               aria-expanded={mobileNavOpen}
               aria-controls="mobile-nav-panel"
               aria-label={mobileNavOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -134,7 +146,7 @@ function NavbarComponent() {
             role="dialog"
             aria-modal="true"
             aria-label="Site navigation"
-            className="fixed top-0 right-0 z-[70] flex h-full w-[min(100%,20rem)] flex-col border-l border-slate-200 bg-white text-slate-900 shadow-xl md:hidden"
+            className="fixed top-0 right-0 z-[70] flex h-full w-[min(100%,20rem)] flex-col border-l border-slate-200 bg-white text-slate-900 shadow-xl dark:border-white/5 dark:bg-[#0e0e13] dark:text-slate-100 md:hidden"
           >
             <div className="flex h-20 shrink-0 items-center justify-between border-b border-inherit px-6">
               <span className="text-lg font-semibold">Menu</span>
@@ -160,7 +172,7 @@ function NavbarComponent() {
                       'rounded-lg px-4 py-3 text-base font-medium',
                       isActive
                         ? 'bg-blue-600 text-white'
-                        : 'text-slate-700 hover:bg-slate-100',
+                        : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/5',
                     )
                   }
                 >

@@ -1,4 +1,4 @@
-import type { CatalogProduct } from '../types/product'
+import type { CatalogProduct } from '../types'
 
 export const CATALOG_PRODUCTS: CatalogProduct[] = [
   {

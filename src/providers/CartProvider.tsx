@@ -8,7 +8,7 @@ import {
 import { cartReducer } from '../lib/cart-reducer'
 import { loadCartFromStorage, saveCartToStorage } from '../lib/cart-storage'
 import { SALES_TAX_RATE } from '../lib/constants'
-import type { AddToCartInput } from '../types/cart'
+import type { AddToCartInput } from '../types'
 import { CartContext } from './cart-context'
 
 export function CartProvider({ children }: { children: ReactNode }) {

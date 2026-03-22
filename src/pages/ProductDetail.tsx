@@ -67,7 +67,7 @@ export function ProductDetail() {
 
         <div className="lg:col-span-4">
           <div className="bg-surface-container-high sticky top-32 space-y-4 rounded-xl p-8">
-            <span className="text-primary-container text-5xl font-black tracking-tighter">
+            <span className="text-primary-container text-5xl font-black tracking-tighter dark:text-primary">
               {formatUsd(FEATURED_PRODUCT.priceCents)}
             </span>
             <div className="space-y-4">
@@ -81,7 +81,7 @@ export function ProductDetail() {
               </button>
               <button
                 type="button"
-                className="text-on-primary-fixed-variant w-full rounded-full bg-white py-5 text-lg font-bold transition-all hover:bg-surface-container-lowest"
+                className="text-on-primary-fixed-variant w-full rounded-full bg-white py-5 text-lg font-bold transition-all hover:bg-surface-container-lowest dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
               >
                 Buy with Pay
               </button>

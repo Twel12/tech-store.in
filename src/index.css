@@ -60,6 +60,56 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+.dark {
+  /* Base surfaces — near-black with a faint blue-grey tint */
+  --color-surface: #09090b;
+  --color-background: #09090b;
+  --color-surface-dim: #09090b;
+  --color-surface-bright: #1c1c22;
+  --color-surface-container-lowest: #050507;
+  --color-surface-container-low: #0e0e13;
+  --color-surface-container: #131318;
+  --color-surface-container-high: #1a1a21;
+  --color-surface-container-highest: #22222a;
+
+  /* Text */
+  --color-on-surface: #e8e6f0;
+  --color-on-surface-variant: #a8a9bc;
+  --color-on-background: #e8e6f0;
+
+  /* Borders */
+  --color-outline: #5a5b6e;
+  --color-outline-variant: #2a2b38;
+
+  /* Inverse */
+  --color-inverse-surface: #e8e6f0;
+  --color-inverse-on-surface: #1a1a21;
+
+  /* Primary — vivid electric blue; white text hits ~6.5:1 contrast against it */
+  --color-primary: #5272ff;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #2444c8;
+  --color-on-primary-container: #dce3ff;
+  --color-primary-fixed: #1c2870;
+  --color-on-primary-fixed: #c8cfff;
+  --color-on-primary-fixed-variant: #c8cfff;
+  --color-primary-fixed-dim: #7a90ff;
+  --color-inverse-primary: #0040e0;
+
+  /* Secondary */
+  --color-secondary: #7a90ff;
+  --color-on-secondary: #0a1860;
+  --color-secondary-container: #1f3080;
+  --color-on-secondary-container: #dce3ff;
+  --color-surface-tint: #5272ff;
+
+  /* Error */
+  --color-error: #ff8a80;
+  --color-on-error: #5c0007;
+  --color-error-container: #800008;
+  --color-on-error-container: #ffdad6;
+}
+
 .material-symbols-outlined {
   font-variation-settings:
     "FILL" 0,

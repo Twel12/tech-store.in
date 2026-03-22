@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import type { AddToCartInput } from '../types/cart'
+import type { AddToCartInput } from '../types'
 import { useCart } from './useCart'
 
 type UseAddToCartReturn = {

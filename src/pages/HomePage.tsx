@@ -97,7 +97,7 @@ export function HomePage() {
                 </button>
               </div>
             </div>
-            <div className="group flex h-[500px] flex-col rounded-xl bg-white p-10 md:col-span-2 lg:col-span-4">
+            <div className="group flex h-[500px] flex-col rounded-xl bg-white p-10 md:col-span-2 lg:col-span-4 dark:bg-surface-container-lowest">
               <img
                 className="mb-8 h-2/3 object-contain transition-transform duration-500 group-hover:rotate-6"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjOFKa-jiOqNyF_nbyylyzWNwyNQxrhfqjMjIjg710e_j5Wu2y9ADUsh8cQWc-hEa1xp4ZJ8-ZP7tgYE4EE_8PbbvorOBHDpLDc6LT6MeLOFoOT0uOgvr_PNWBLXtU2TiAbIXBk4ASE9pr_mWC-KXAXa9DgBwUhaIbVLduPfnLKQjm1uUxbz8uky0sBqQet4quvgd8FXXQtev9Q8kPUVLWgXRvD9WkdtgoskWdwk8-elvkRbkL0jAUbabEEYedsiSxqRzQMDtctig"
