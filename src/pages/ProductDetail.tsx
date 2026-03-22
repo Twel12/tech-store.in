@@ -55,10 +55,12 @@ export function ProductDetail() {
           </section>
         </div>
         <div className="lg:col-span-4">
-          <div className="bg-surface-container-high sticky top-32 space-y-8 rounded-xl p-8">
+          <div className="bg-surface-container-high sticky top-32 space-y-4 rounded-xl p-8">
+          <div>
             <span className="text-primary-container text-5xl font-black tracking-tighter">
               $1,599.00
             </span>
+            </div>
             <div className="space-y-4">
               <button
                 type="button"
