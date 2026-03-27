@@ -7,9 +7,8 @@ export function HomePage() {
   const navigate = useNavigate()
   return (
     <div className="pt-16">
-      {/* Hero */}
       <section className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-screen-2xl grid-cols-1 items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:py-0">
-        <div>
+        <div className="mx-auto">
           <p className="mb-4 text-sm font-medium text-muted-foreground uppercase tracking-widest">
             New Arrival
           </p>
@@ -18,7 +17,7 @@ export function HomePage() {
             <br />
             Apex Pro.
           </h1>
-          <p className="mb-10 max-w-md text-lg text-muted-foreground">
+          <p className="mb-10 mx-auto max-w-md text-muted-foreground">
             Experience the architecture of the future. The first processor
             designed with fluid-state logic for unparalleled multi-threaded
             mastery.
