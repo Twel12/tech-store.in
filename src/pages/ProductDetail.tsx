@@ -1,3 +1,10 @@
+import { Button } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+} from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 import { FEATURED_PRODUCT, FEATURED_PRODUCT_SPECS } from '../data/product-detail'
 import { useAddToCart } from '../hooks/useAddToCart'
 import { formatUsd } from '../lib/money'
@@ -12,81 +19,84 @@ export function ProductDetail() {
   })
 
   return (
-    <main className="mx-auto max-w-screen-2xl px-6 pt-32 pb-20">
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-        <div className="space-y-16 lg:col-span-8">
+    <main className="mx-auto max-w-screen-2xl px-6 pt-24 pb-20">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
+        {/* Left column */}
+        <div className="space-y-10 lg:col-span-8">
+          {/* Title */}
           <section>
-            <span className="text-primary mb-4 block text-xs font-bold tracking-widest uppercase">
+            <p className="mb-3 text-xs font-medium text-muted-foreground uppercase tracking-widest">
               Next-Gen Architecture
-            </span>
-            <h1 className="text-on-surface mb-8 text-6xl leading-[0.9] font-black tracking-tighter md:text-8xl">
-              Vortex <br />
+            </p>
+            <h1 className="text-5xl font-bold tracking-tight md:text-7xl">
+              Vortex
+              <br />
               X-1
             </h1>
-            <p className="text-on-surface-variant max-w-xl text-xl leading-relaxed">
-              The pinnacle of visual computation. Designed for creators who
-              demand zero latency and gamers who refuse to compromise.
+            <p className="mt-4 max-w-xl text-muted-foreground">
+              The pinnacle of visual computation. Designed for creators who demand zero
+              latency and gamers who refuse to compromise.
             </p>
           </section>
 
-          <section className="relative">
-            <div className="bg-primary-container/20 absolute top-1/2 left-1/2 -z-10 h-4/5 w-4/5 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]" />
-            <div className="bg-surface-container-lowest flex items-center justify-center overflow-hidden rounded-xl p-8 md:p-16">
-              <img
-                src={FEATURED_PRODUCT.img}
-                className="h-auto w-full object-contain transition-transform duration-700 hover:scale-105"
-                alt={`${FEATURED_PRODUCT.name} product image`}
-                loading="eager"
-              />
-            </div>
-          </section>
+          {/* Product image */}
+          <div className="flex items-center justify-center overflow-hidden rounded-xl border border-border bg-muted/30 p-10 md:p-16">
+            <img
+              src={FEATURED_PRODUCT.img}
+              className="h-auto max-h-80 w-full object-contain transition-transform duration-700 hover:scale-105"
+              alt={`${FEATURED_PRODUCT.name} product image`}
+              loading="eager"
+            />
+          </div>
 
-          <section className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {/* Specs grid */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             {FEATURED_PRODUCT_SPECS.map((spec, idx) => (
-              <div
-                key={`${spec.label}-${idx}`}
-                className="bg-surface-container-low space-y-4 rounded-xl p-10"
-              >
-                <span
-                  className="material-symbols-outlined text-primary text-4xl"
-                  style={{ fontVariationSettings: "'FILL' 1" }}
-                  aria-hidden
-                >
-                  {spec.icon}
-                </span>
-                <h3 className="text-on-surface-variant text-sm font-bold tracking-widest uppercase">
-                  {spec.label}
-                </h3>
-                <p className="text-on-surface text-4xl font-black tracking-tighter">
-                  {spec.value}
-                </p>
-              </div>
+              <Card key={`${spec.label}-${idx}`}>
+                <CardContent className="pt-6">
+                  <span
+                    className="material-symbols-outlined mb-3 block text-3xl text-primary"
+                    style={{ fontVariationSettings: "'FILL' 1" }}
+                    aria-hidden
+                  >
+                    {spec.icon}
+                  </span>
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                    {spec.label}
+                  </p>
+                  <p className="mt-1 text-2xl font-bold tabular-nums">{spec.value}</p>
+                </CardContent>
+              </Card>
             ))}
-          </section>
+          </div>
         </div>
 
+        {/* Right column — purchase card */}
         <div className="lg:col-span-4">
-          <div className="bg-surface-container-high sticky top-32 space-y-4 rounded-xl p-8">
-            <span className="text-primary-container text-5xl font-black tracking-tighter dark:text-primary">
-              {formatUsd(FEATURED_PRODUCT.priceCents)}
-            </span>
-            <div className="space-y-4">
-              <button
+          <Card className="sticky top-24">
+            <CardContent className="pt-6">
+              <p className="text-3xl font-bold tabular-nums">
+                {formatUsd(FEATURED_PRODUCT.priceCents)}
+              </p>
+              <Separator className="my-4" />
+              <p className="text-sm text-muted-foreground">
+                Free shipping on orders over $500. Ships in 2–3 business days.
+              </p>
+            </CardContent>
+            <CardFooter className="flex flex-col gap-2">
+              <Button
                 key={addPulse}
-                type="button"
-                className={`from-primary-container to-primary w-full rounded-full bg-gradient-to-br py-5 text-lg font-bold text-white shadow-lg shadow-primary/20 transition-transform hover:scale-[1.02] active:scale-95 ${addPulse > 0 ? 'animate-add-to-cart' : ''}`}
+                className={`w-full ${addPulse > 0 ? 'animate-add-to-cart' : ''}`}
+                size="lg"
                 onClick={handleAddToCart}
               >
                 Add to Cart
-              </button>
-              <button
-                type="button"
-                className="text-on-primary-fixed-variant w-full rounded-full bg-white py-5 text-lg font-bold transition-all hover:bg-surface-container-lowest dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
-              >
-                Buy with Pay
-              </button>
-            </div>
-          </div>
+              </Button>
+              <Button variant="outline" size="lg" className="w-full">
+                Buy Now
+              </Button>
+            </CardFooter>
+          </Card>
         </div>
       </div>
     </main>

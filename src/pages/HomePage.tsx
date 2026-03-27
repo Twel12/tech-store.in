@@ -1,114 +1,113 @@
 import { Link, useNavigate } from 'react-router-dom'
+import { Button, buttonVariants } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 import { ROUTES } from '../config/routes'
 
 export function HomePage() {
   const navigate = useNavigate()
   return (
-    <div className="pt-20">
-      <section className="hero-gradient relative flex min-h-[870px] items-center overflow-hidden px-8 lg:px-20">
-        <div className="mx-auto grid w-full max-w-screen-2xl grid-cols-1 items-center gap-12 lg:grid-cols-12">
-          <div className="z-10 lg:col-span-6">
-            <span className="bg-primary-fixed text-on-primary-fixed mb-6 inline-block rounded-full px-4 py-1 text-sm font-semibold">
-              NEW ARRIVAL
-            </span>
-            <h1 className="text-on-surface mb-8 text-6xl leading-[0.9] font-bold tracking-tighter md:text-8xl">
-              Quantum <br />
-              <span className="text-primary">Apex Pro.</span>
-            </h1>
-            <p className="text-on-surface-variant mb-12 max-w-lg text-xl leading-relaxed">
-              Experience the architecture of the future. The first processor
-              designed with fluid-state logic for unparalleled multi-threaded
-              mastery.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <button
-                type="button"
-                onClick={() => navigate(ROUTES.product)}
-                className="from-primary-container to-primary text-on-primary rounded-full bg-gradient-to-br px-10 py-4 text-lg font-bold shadow-xl shadow-primary/20 transition-all hover:scale-105 active:scale-95"
-              >
-                Buy Now
-              </button>
-              <button
-                type="button"
-                className="bg-surface-container-high text-on-primary-fixed-variant rounded-full px-10 py-4 text-lg font-bold transition-all hover:scale-105 active:scale-95"
-              >
-                Technical Specs
-              </button>
-            </div>
+    <div className="pt-16">
+      {/* Hero */}
+      <section className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-screen-2xl grid-cols-1 items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:py-0">
+        <div>
+          <p className="mb-4 text-sm font-medium text-muted-foreground uppercase tracking-widest">
+            New Arrival
+          </p>
+          <h1 className="mb-6 text-5xl font-bold tracking-tight md:text-7xl">
+            Quantum
+            <br />
+            Apex Pro.
+          </h1>
+          <p className="mb-10 max-w-md text-lg text-muted-foreground">
+            Experience the architecture of the future. The first processor
+            designed with fluid-state logic for unparalleled multi-threaded
+            mastery.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Button size="lg" onClick={() => navigate(ROUTES.product)}>
+              Buy Now
+            </Button>
+            <Button size="lg" variant="outline">
+              Technical Specs
+            </Button>
           </div>
-          <div className="relative flex items-center justify-center lg:col-span-6">
-            <div className="bg-primary-container/10 absolute h-[120%] w-[120%] rounded-full blur-[120px]" />
-            <div className="bg-surface-container-lowest relative flex aspect-square w-full max-w-xl items-center justify-center overflow-hidden rounded-xl p-12 shadow-2xl">
-              <img
-                alt="Processor"
-                className="h-full w-full object-contain transition-transform duration-700 hover:scale-110"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPY40K0Stgp03Hr4bBBsr3gkDnQ_wgTTy6BJon0WhERJBJbMjFCz_yYv7sDt9l3t-q1aOzV4eN3-KKSOBIvpgl0o0KxBUNsJCwuwzz7lUel0zxJAuDsVm56raZ0n1kNt15lhwUBtPWjPqwsI56ZzRVTtvnJYjtXGbulVpOz2GXI2n3NviwYwtK29mJ6lXp3kpvd5vtQLilicKD2d3V_o6ivvdZKMzShxmExSfOnJ6aknGW7r-xc7nQycFLgWEYIoo6pVF2hRH52iI"
-              />
-            </div>
+        </div>
+        <div className="flex items-center justify-center">
+          <div className="relative flex aspect-square w-full max-w-md items-center justify-center overflow-hidden rounded-2xl border border-border bg-muted/30 p-10">
+            <img
+              alt="Processor"
+              className="h-full w-full object-contain transition-transform duration-700 hover:scale-105"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPY40K0Stgp03Hr4bBBsr3gkDnQ_wgTTy6BJon0WhERJBJbMjFCz_yYv7sDt9l3t-q1aOzV4eN3-KKSOBIvpgl0o0KxBUNsJCwuwzz7lUel0zxJAuDsVm56raZ0n1kNt15lhwUBtPWjPqwsI56ZzRVTtvnJYjtXGbulVpOz2GXI2n3NviwYwtK29mJ6lXp3kpvd5vtQLilicKD2d3V_o6ivvdZKMzShxmExSfOnJ6aknGW7r-xc7nQycFLgWEYIoo6pVF2hRH52iI"
+            />
           </div>
         </div>
       </section>
 
-      <section className="bg-surface-container-low py-32 px-8 lg:px-20">
-        <div className="mx-auto max-w-screen-2xl">
-          <div className="mb-16 flex flex-col items-end justify-between gap-8 md:flex-row">
-            <div>
-              <h2 className="text-on-surface text-4xl font-bold tracking-tighter md:text-5xl">
-                Curated Collections
-              </h2>
-              <p className="text-on-surface-variant mt-4 text-lg">
-                Architectural precision in every component.
-              </p>
-            </div>
-            <Link
-              to={ROUTES.catalog}
-              className="group text-primary flex items-center gap-2 text-lg font-bold"
-            >
-              View Full Catalog{' '}
-              <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">
-                arrow_forward
-              </span>
-            </Link>
+      <Separator />
+
+      {/* Curated Collections */}
+      <section className="mx-auto max-w-screen-2xl px-6 py-24">
+        <div className="mb-10 flex items-end justify-between">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight">Curated Collections</h2>
+            <p className="mt-2 text-muted-foreground">
+              Architectural precision in every component.
+            </p>
           </div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-12">
-            <div className="group bg-surface-container-lowest relative flex h-[500px] flex-col justify-end overflow-hidden rounded-xl p-10 md:col-span-2 lg:col-span-8">
-              <div className="absolute top-0 right-0 h-full w-2/3">
-                <img
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfDCBOQ_TKG7apcGnrS9NdoHEHo0q_S3Z1VOrB0NBEwrmvHQGdM8fZRPuFtrkntrGwLIYMDt0glz_XbAxKNetR7S0CW83VkLwd-fxClkaAbZ4VimrzXyT0b61RewZ4JP729zvVr5MJKe6SCKEjfQ7lH5tXWJvgRW2hX8caoUEhHDVhB46wNtcncPL8wflqCiuyiy3S0brLVNWAJQkqa7nDl-HNriMpmdLih4yV_Lt3RHZnV4LjDMsWVc0p-ougZb9eyNuhP1VszFs"
-                  alt=""
-                />
-              </div>
-              <div className="relative z-10 max-w-sm">
-                <h3 className="text-on-surface mb-4 text-4xl font-bold tracking-tight">
-                  Graphics Cards
-                </h3>
-                <p className="text-on-surface-variant mb-8">
-                  Uncompromising visual fidelity for creators and enthusiasts.
-                </p>
-                <button
-                  type="button"
-                  className="group-hover:w-40 text-on-primary flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-primary px-4 whitespace-nowrap transition-all duration-300"
-                >
-                  <span className="material-symbols-outlined">add</span>
-                  <span className="ml-2 font-bold opacity-0 transition-opacity group-hover:opacity-100">
-                    Explore Range
-                  </span>
-                </button>
-              </div>
-            </div>
-            <div className="group flex h-[500px] flex-col rounded-xl bg-white p-10 md:col-span-2 lg:col-span-4 dark:bg-surface-container-lowest">
+          <Link
+            to={ROUTES.catalog}
+            className="hidden items-center gap-1 text-sm font-medium hover:underline md:flex"
+          >
+            View all
+            <span className="material-symbols-outlined text-[16px]" aria-hidden>
+              arrow_forward
+            </span>
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {/* Large card */}
+          <div className="group relative flex h-72 flex-col justify-end overflow-hidden rounded-xl border border-border bg-muted/30 p-6 md:col-span-2 md:h-96">
+            <div className="absolute top-0 right-0 h-full w-2/3">
               <img
-                className="mb-8 h-2/3 object-contain transition-transform duration-500 group-hover:rotate-6"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfDCBOQ_TKG7apcGnrS9NdoHEHo0q_S3Z1VOrB0NBEwrmvHQGdM8fZRPuFtrkntrGwLIYMDt0glz_XbAxKNetR7S0CW83VkLwd-fxClkaAbZ4VimrzXyT0b61RewZ4JP729zvVr5MJKe6SCKEjfQ7lH5tXWJvgRW2hX8caoUEhHDVhB46wNtcncPL8wflqCiuyiy3S0brLVNWAJQkqa7nDl-HNriMpmdLih4yV_Lt3RHZnV4LjDMsWVc0p-ougZb9eyNuhP1VszFs"
+                alt=""
+              />
+            </div>
+            <div className="relative z-10">
+              <h3 className="text-2xl font-semibold">Graphics Cards</h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Uncompromising visual fidelity.
+              </p>
+              <Button size="sm" className="mt-4">
+                Explore Range
+              </Button>
+            </div>
+          </div>
+          {/* Small card */}
+          <div className="group flex h-72 flex-col overflow-hidden rounded-xl border border-border bg-card md:h-96">
+            <div className="flex flex-1 items-center justify-center p-8">
+              <img
+                className="h-full object-contain transition-transform duration-500 group-hover:scale-105"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjOFKa-jiOqNyF_nbyylyzWNwyNQxrhfqjMjIjg710e_j5Wu2y9ADUsh8cQWc-hEa1xp4ZJ8-ZP7tgYE4EE_8PbbvorOBHDpLDc6LT6MeLOFoOT0uOgvr_PNWBLXtU2TiAbIXBk4ASE9pr_mWC-KXAXa9DgBwUhaIbVLduPfnLKQjm1uUxbz8uky0sBqQet4quvgd8FXXQtev9Q8kPUVLWgXRvD9WkdtgoskWdwk8-elvkRbkL0jAUbabEEYedsiSxqRzQMDtctig"
                 alt=""
               />
-              <h3 className="text-on-surface mb-2 text-2xl font-bold">Memory</h3>
-              <p className="text-on-surface-variant">
-                Low latency, high bandwidth modules.
+            </div>
+            <div className="p-6 pt-0">
+              <h3 className="font-semibold">Memory</h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Low latency, high bandwidth.
               </p>
             </div>
           </div>
+        </div>
+        <div className="mt-4 md:hidden">
+          <Link
+            to={ROUTES.catalog}
+            className={buttonVariants({ variant: 'outline', className: 'w-full' })}
+          >
+            View Full Catalog
+          </Link>
         </div>
       </section>
     </div>

@@ -1,37 +1,29 @@
 import { Link, useLocation } from 'react-router-dom'
+import { buttonVariants } from '@/components/ui/button'
 import { ROUTES } from '../config/routes'
+import { cn } from '../utils/cn'
 
 export function NotFoundPage() {
   const { pathname } = useLocation()
 
   return (
-    <main className="flex min-h-[calc(100vh-5rem)] flex-col items-center justify-center px-8 text-center">
-      <p className="text-primary mb-4 text-8xl font-black tracking-tighter md:text-9xl">
+    <main className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-6 text-center">
+      <p className="mb-2 text-8xl font-bold tabular-nums tracking-tighter text-muted-foreground/30 md:text-9xl">
         404
       </p>
-      <h1 className="text-on-surface mb-4 text-3xl font-extrabold tracking-tight md:text-4xl">
-        Oops — page not found
-      </h1>
-      <p className="text-on-surface-variant mb-2 text-lg">
-        There's nothing at{' '}
-        <code className="bg-surface-container rounded px-2 py-0.5 font-mono text-sm">
-          {pathname}
-        </code>
+      <h1 className="mb-2 text-2xl font-semibold tracking-tight">Page not found</h1>
+      <p className="mb-1 text-sm text-muted-foreground">
+        There&apos;s nothing at{' '}
+        <code className="rounded bg-muted px-1.5 py-0.5 font-mono">{pathname}</code>
       </p>
-      <p className="text-on-surface-variant mb-12 text-lg">
+      <p className="mb-8 text-sm text-muted-foreground">
         It may have been moved, deleted, or never existed.
       </p>
-      <div className="flex flex-wrap justify-center gap-4">
-        <Link
-          to={ROUTES.home}
-          className="from-primary-container to-primary text-on-primary rounded-full bg-gradient-to-br px-8 py-3 font-bold shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95"
-        >
+      <div className="flex flex-wrap justify-center gap-3">
+        <Link to={ROUTES.home} className={buttonVariants()}>
           Go home
         </Link>
-        <Link
-          to={ROUTES.catalog}
-          className="bg-surface-container-high text-on-primary-fixed-variant rounded-full px-8 py-3 font-bold transition-all hover:scale-105 active:scale-95"
-        >
+        <Link to={ROUTES.catalog} className={cn(buttonVariants({ variant: 'outline' }))}>
           Browse catalog
         </Link>
       </div>

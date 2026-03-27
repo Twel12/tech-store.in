@@ -1,5 +1,12 @@
 import { memo } from 'react'
 import { Link } from 'react-router-dom'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+} from '@/components/ui/card'
 import { ROUTES } from '../../config/routes'
 import { useAddToCart } from '../../hooks/useAddToCart'
 import { formatUsd } from '../../lib/money'
@@ -24,36 +31,40 @@ function CatalogProductCardComponent({
   })
 
   return (
-    <article className="group rounded-xl bg-surface-container-lowest p-8 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+    <Card className="group overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
       <Link to={to} className="block">
-        <div className="mb-6 flex aspect-square items-center justify-center overflow-hidden rounded-lg bg-slate-50 dark:bg-[#1a1a24]">
+        <div className="relative flex aspect-square items-center justify-center overflow-hidden bg-muted/30 p-6">
           <img
             src={img}
-            className="h-4/5 w-4/5 object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-110 dark:mix-blend-normal"
+            className="h-4/5 w-4/5 object-contain transition-transform duration-500 group-hover:scale-105"
             alt={name}
             loading="lazy"
           />
         </div>
-        <h3 className="text-on-surface mb-2 text-xl font-bold">{name}</h3>
+        <CardContent className="px-5 pt-4 pb-0">
+          {category && (
+            <Badge variant="secondary" className="mb-2 text-xs">
+              {category}
+            </Badge>
+          )}
+          <h3 className="text-base font-semibold leading-tight">{name}</h3>
+        </CardContent>
       </Link>
-      <div className="mt-4 flex items-center justify-between">
-
-        <span className="text-on-surface text-2xl font-black tabular-nums">
-          {formatUsd(priceCents)}
-        </span>
-        <button
+      <CardFooter className="flex items-center justify-between px-5 pt-3 pb-5">
+        <span className="text-xl font-bold tabular-nums">{formatUsd(priceCents)}</span>
+        <Button
           key={addPulse}
-          type="button"
-          className={`from-primary-container to-primary text-on-primary rounded-full bg-gradient-to-br p-3 shadow-md shadow-primary/20 transition-all hover:scale-110 hover:shadow-lg hover:shadow-primary/30 ${addPulse > 0 ? 'animate-add-to-cart' : ''}`}
-          aria-label={`Add ${name} to cart`}
+          size="icon"
           onClick={handleAddToCart}
+          aria-label={`Add ${name} to cart`}
+          className={addPulse > 0 ? 'animate-add-to-cart' : ''}
         >
-          <span className="material-symbols-outlined" aria-hidden>
+          <span className="material-symbols-outlined text-[20px]" aria-hidden>
             add_shopping_cart
           </span>
-        </button>
-      </div>
-    </article>
+        </Button>
+      </CardFooter>
+    </Card>
   )
 }
 

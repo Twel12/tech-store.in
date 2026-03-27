@@ -1,40 +1,136 @@
+import { useState } from 'react'
+import { Skeleton } from '@/components/ui/skeleton'
 import { CatalogProductCard } from '../components/catalog/CatalogProductCard'
-import { CATALOG_FILTER_CATEGORIES, CATALOG_PRODUCTS } from '../data/catalog'
+import { useCatalogProducts } from '../hooks/useCatalogProducts'
+import { useCollections } from '../hooks/useCollections'
+import { cn } from '../utils/cn'
 
 export function CatalogPage() {
+  const [selectedHandle, setSelectedHandle] = useState<string | undefined>()
+
+  const collectionsState = useCollections()
+  const productsState = useCatalogProducts(selectedHandle)
+
+  const activeTitle =
+    collectionsState.status === 'success' && selectedHandle
+      ? (collectionsState.collections.find((c) => c.handle === selectedHandle)?.title ??
+        'Technical Registry')
+      : 'Technical Registry'
+
   return (
-    <main className="bg-background text-on-surface mx-auto flex min-h-screen max-w-screen-2xl gap-12 px-8 pt-24 pb-20">
-      <aside className="sticky top-24 hidden h-fit w-72 flex-col gap-4 rounded-r-[3rem] bg-slate-50 p-6 lg:flex dark:bg-[#131318]">
-        <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">Filters</h2>
-        <div className="space-y-2">
-          {CATALOG_FILTER_CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              className="flex w-full items-center gap-3 rounded-full px-4 py-3 text-sm font-medium text-slate-800 transition-transform hover:translate-x-1 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/5"
-            >
-              <span className="material-symbols-outlined text-slate-600 dark:text-slate-400" aria-hidden>
-                settings
-              </span>
-              <span>{cat}</span>
-            </button>
-          ))}
-        </div>
+    <main className="mx-auto flex min-h-screen max-w-screen-2xl gap-10 px-6 pt-20 pb-20">
+      {/* Sidebar */}
+      <aside className="sticky top-20 hidden h-fit w-56 shrink-0 lg:block">
+        <h2 className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+          Categories
+        </h2>
+        <nav className="flex flex-col gap-0.5">
+          <button
+            type="button"
+            onClick={() => setSelectedHandle(undefined)}
+            className={cn(
+              'rounded-md px-3 py-2 text-sm font-medium text-left transition-colors',
+              selectedHandle === undefined
+                ? 'bg-accent text-accent-foreground'
+                : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground',
+            )}
+          >
+            All Products
+          </button>
+
+          {collectionsState.status === 'loading' &&
+            Array.from({ length: 4 }).map((_, i) => (
+              <Skeleton key={i} className="my-0.5 h-8 w-full rounded-md" />
+            ))}
+
+          {collectionsState.status === 'error' && (
+            <p className="px-3 py-2 text-xs text-destructive">
+              {collectionsState.message}
+            </p>
+          )}
+
+          {collectionsState.status === 'success' &&
+            collectionsState.collections.map((col) => (
+              <button
+                key={col.id}
+                type="button"
+                onClick={() => setSelectedHandle(col.handle)}
+                className={cn(
+                  'rounded-md px-3 py-2 text-sm font-medium text-left transition-colors',
+                  selectedHandle === col.handle
+                    ? 'bg-accent text-accent-foreground'
+                    : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground',
+                )}
+              >
+                {col.title}
+              </button>
+            ))}
+        </nav>
       </aside>
-      <section className="flex-1">
-        <header className="mb-12">
-          <h1 className="text-on-surface mb-2 text-4xl font-extrabold tracking-tight md:text-5xl">
-            Technical Registry
-          </h1>
-          <p className="text-on-surface-variant text-lg">
+
+      {/* Products */}
+      <section className="flex-1 min-w-0">
+        <header className="mb-8">
+          <h1 className="text-3xl font-bold tracking-tight">{activeTitle}</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
             Exploring architectural precision in computational hardware.
           </p>
         </header>
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3">
-          {CATALOG_PRODUCTS.map((product) => (
-            <CatalogProductCard key={product.id} product={product} />
-          ))}
-        </div>
+
+        {productsState.status === 'loading' && (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="overflow-hidden rounded-lg border border-border">
+                <Skeleton className="aspect-square w-full" />
+                <div className="space-y-2 p-4">
+                  <Skeleton className="h-4 w-1/3" />
+                  <Skeleton className="h-5 w-2/3" />
+                  <Skeleton className="mt-3 h-8 w-1/2" />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {productsState.status === 'error' && (
+          <div className="flex flex-col items-center gap-3 py-24 text-center">
+            <span
+              className="material-symbols-outlined text-4xl text-muted-foreground"
+              aria-hidden
+            >
+              cloud_off
+            </span>
+            <p className="text-sm text-muted-foreground">{productsState.message}</p>
+            <p className="text-xs text-muted-foreground">
+              Backend:{' '}
+              <code className="rounded bg-muted px-1.5 py-0.5 font-mono">
+                {import.meta.env.VITE_API_URL}
+              </code>
+            </p>
+          </div>
+        )}
+
+        {productsState.status === 'success' && productsState.products.length === 0 && (
+          <div className="flex flex-col items-center gap-3 py-24 text-center">
+            <span
+              className="material-symbols-outlined text-4xl text-muted-foreground"
+              aria-hidden
+            >
+              inventory_2
+            </span>
+            <p className="text-sm text-muted-foreground">
+              No products in this category yet.
+            </p>
+          </div>
+        )}
+
+        {productsState.status === 'success' && productsState.products.length > 0 && (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {productsState.products.map((product) => (
+              <CatalogProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
       </section>
     </main>
   )

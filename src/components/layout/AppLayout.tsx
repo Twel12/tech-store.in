@@ -4,7 +4,7 @@ import { Navbar } from './Navbar'
 
 export function AppLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="bg-surface text-on-surface font-body flex min-h-screen flex-col antialiased">
+    <div className="flex min-h-screen flex-col bg-background text-foreground antialiased">
       <Navbar />
       <div className="grow">{children}</div>
       <Footer />
