@@ -5,4 +5,5 @@ export const ROUTES = {
   cart: '/cart',
   platform: '/platform',
   solutions: '/solutions',
+  login: '/login',
 } as const

@@ -14,6 +14,7 @@ import { useCart } from '../../hooks/useCart'
 import { useTheme } from '../../hooks/useTheme'
 import { BRAND_NAME } from '../../lib/constants'
 import { cn } from '../../utils/cn'
+import { SearchDialog } from './SearchDialog'
 
 type NavItem = { label: string; to: string }
 
@@ -63,6 +64,9 @@ function NavbarComponent() {
 
         {/* Icons */}
         <div className="flex items-center gap-1">
+          {/* Search */}
+          <SearchDialog />
+
           {/* Cart — plain link styled as ghost icon button */}
           <Link
             to={ROUTES.cart}
@@ -80,6 +84,18 @@ function NavbarComponent() {
                 {itemCount > 99 ? '99+' : itemCount}
               </Badge>
             )}
+          </Link>
+
+          {/* Login status */}
+          <Link
+            to={ROUTES.login}
+            aria-label="Sign in"
+            title="Sign in"
+            className="inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            <span className="material-symbols-outlined text-[22px]" aria-hidden>
+              account_circle
+            </span>
           </Link>
 
           {/* Dark mode toggle */}

@@ -25,6 +25,10 @@ const NotFoundPage = lazy(() =>
   import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })),
 )
 
+const LoginPage = lazy(() =>
+  import('./pages/LoginPage').then((m) => ({ default: m.LoginPage })),
+)
+
 function RouteFallback() {
   return (
     <div
@@ -48,6 +52,7 @@ export default function App() {
           <Route path={ROUTES.cart} element={<CartPage />} />
           <Route path={ROUTES.platform} element={<PlatformPage />} />
           <Route path={ROUTES.solutions} element={<SolutionsPage />} />
+          <Route path={ROUTES.login} element={<LoginPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
